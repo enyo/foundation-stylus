@@ -8,17 +8,33 @@ describe "functions", ->
     it "should properly convert numbers to words", (done) ->
       stylus("""
              @import "_functions"
-             convertNumberToWord(0)
              convertNumberToWord(1)
              convertNumberToWord(6)
              convertNumberToWord(12)
              convertNumberToWord(24)
-             convertNumberToWord(25)
              """)
         .set("paths", [ "#{path.dirname __dirname}/foundation" ])
         .render (err, css) ->
           (err?).should.be.false
-          css.should.eql "invalid\none\nsix\ntwelve\ntwentyfour\ninvalid\n"
+          css.should.eql "one\nsix\ntwelve\ntwentyfour\n"
+          done();
+    it "should error on invalid numbers (0)", (done) ->
+      stylus("""
+             @import "_functions"
+             convertNumberToWord(0)
+             """)
+        .set("paths", [ "#{path.dirname __dirname}/foundation" ])
+        .render (err, css) ->
+          (err?).should.be.true
+          done();
+    it "should error on invalid numbers (25)", (done) ->
+      stylus("""
+             @import "_functions"
+             convertNumberToWord(25)
+             """)
+        .set("paths", [ "#{path.dirname __dirname}/foundation" ])
+        .render (err, css) ->
+          (err?).should.be.true
           done();
 
   describe "gridCalc()", ->

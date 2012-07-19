@@ -6,8 +6,7 @@ convertNumberToWord(num)
     if i + 1 == num
       foundWord = true
       word
-  unless foundWord
-    invalid
+  error("Invalid number: " + num) unless foundWord
 
 
 
