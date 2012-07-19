@@ -18,3 +18,16 @@ describe "mixins", ->
           css = helper.normalizeCss css
           css.should.eql "body { font-size: 10px; font-size: 1rem; font-size: 10px !important; font-size: 1rem !important; }"
           done();
+  describe "defaultFontFamily()", ->
+    it "should return a valid font-family definition", (done) ->
+      stylus("""
+             @import "_mixins"
+             body
+               defaultFontFamily()
+             """)
+        .set("paths", [ "#{path.dirname __dirname}/foundation" ])
+        .render (err, css) ->
+          (err?).should.be.false
+          css = helper.normalizeCss css
+          css.should.eql 'body { font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif; }'
+          done();
