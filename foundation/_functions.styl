@@ -2,10 +2,10 @@
 // Converts `3` to `three`
 convertNumberToWord(num)
   foundWord = false
-  for word, i in one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour
+  for word, i in 'one' 'two' 'three' 'four' 'five' 'six' 'seven' 'eight' 'nine' 'ten' 'eleven' 'twelve' 'thirteen' 'fourteen' 'fifteen' 'sixteen' 'seventeen' 'eighteen' 'nineteen' 'twenty' 'twentyone' 'twentytwo' 'twentythree' 'twentyfour'
     if i + 1 == num
       foundWord = true
-      word
+      return word
   error("Invalid number: " + num) unless foundWord
 
 
