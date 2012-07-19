@@ -4,7 +4,7 @@ path = require "path"
 helper = require "./helper"
 
 describe "settings", ->
-  it "compile", (done) ->
+  it "should compile", (done) ->
     stylus("""
            @import "_settings"
            """)
@@ -12,7 +12,7 @@ describe "settings", ->
       .render (err, css) ->
         (err?).should.be.false
         done();
-  it "don't overwrite already existing properties", (done) ->
+  it "shouldn't overwrite already existing properties", (done) ->
     stylus("""
            mainColor = #f00
            @import "_settings"
