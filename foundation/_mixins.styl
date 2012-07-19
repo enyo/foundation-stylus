@@ -1,5 +1,5 @@
-// Font size mixin to include px and rem
 
+// Font size mixin to include px and rem
 fontSize(size, isImportant = false)
   if isImportant
     font-size unit(size, 'px') !important
@@ -9,11 +9,10 @@ fontSize(size, isImportant = false)
     font-size unit(size / 10, 'rem')
 
 
-// // Grid Calculation for Percentages
+// Grid Calculation for Percentages
+gridCalc(colNumber, totalColumns)
+  unit((100 * colNumber / totalColumns), '%')
 
-// @function gridCalc($colNumber, $totalColumns) {
-//   @return percentage(($colNumber / $totalColumns));
-// }
 
 // // Default Font Stack
 
