@@ -9,7 +9,7 @@ describe "globals", ->
            @import "_settings"
            @import "_functions"
            @import "_mixins"
-           @import "_css3"
+           @import "compass/css3"
            @import "globals"
            """)
       .set("paths", [ "#{path.dirname __dirname}/foundation" ])

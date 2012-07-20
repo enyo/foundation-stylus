@@ -1,0 +1,43 @@
+@import "../support"
+
+
+// This mixin provides basic support for CSS3 properties and
+// their corresponding experimental CSS2 properties when
+// the implementations are identical except for the property
+// prefix.
+experimental( $property, $value,
+              $moz      = true,
+              $webkit   = true,
+              $o        = true,
+              $ms       = true,
+              $khtml    = true,
+              $official = true)
+
+  -moz-{$property} $value    if $moz     and $experimentalSupportForMozilla
+  -webkit-{$property} $value if $webkit  and $experimentalSupportForWebkit
+  -o-{$property} $value      if $o       and $experimentalSupportForOpera
+  -ms-{$property} $value     if $ms      and $experimentalSupportForMicrosoft
+  -khtml-{$property} $value  if $khtml   and $experimentalSupportForKhtml
+  {$property} $value         if $official
+
+
+
+
+// Same as experimental(), but for cases when the property is the same and the
+// value is vendorized
+// XXX interpolation doesn't work on RHS?
+experimental-value( $property, $value,
+                    $moz      = true,
+                    $webkit   = true,
+                    $o        = true,
+                    $ms       = true,
+                    $khtml    = true,
+                    $official = true)
+
+  {$property} unquote('-moz-'+$value)    if $moz     and $experimentalSupportForMozilla
+  {$property} unquote('-webkit-'+$value) if $webkit  and $experimentalSupportForWebkit
+  {$property} unquote('-o-'+$value)      if $o       and $experimentalSupportForOpera
+  {$property} unquote('-ms-'+$value)     if $ms      and $experimentalSupportForMicrosoft
+  {$property} unquote('-khtml-'+$value)  if $khtml   and $experimentalSupportForKhtml
+  {$property} unquote($value)            if $official                                    
+

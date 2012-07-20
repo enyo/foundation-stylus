@@ -9,7 +9,7 @@ describe "grid", ->
            @import "_settings"
            @import "_functions"
            @import "_mixins"
-           @import "_css3"
+           @import "compass/css3"
            @import "grid"
            """)
       .set("paths", [ "#{path.dirname __dirname}/foundation" ])
