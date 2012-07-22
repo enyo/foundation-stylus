@@ -14,7 +14,6 @@ describe "globals", ->
            """)
       .set("paths", [ "#{path.dirname __dirname}/foundation" ])
       .render (err, css) ->
-        # console.log err
         (err?).should.be.false
         # css = helper.normalizeCss css
         # console.log css

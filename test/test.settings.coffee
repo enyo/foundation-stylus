@@ -14,11 +14,11 @@ describe "settings", ->
         done();
   it "shouldn't overwrite already existing properties", (done) ->
     stylus("""
-           mainColor = #f00
+           $mainColor = #f00
            @import "_settings"
            body {
-             background mainColor
-             color txtColor
+             background $mainColor
+             color $txtColor
            }
            """)
       .set("paths", [ "#{path.dirname __dirname}/foundation" ])

@@ -1,0 +1,74 @@
+// @doc off
+// These defaults make the arguments optional for this mixin
+// If you like, set different defaults before importing.
+// @doc on
+
+@import "shared"
+
+
+// The default color for box shadows
+$defaultBoxShadowColor ?= #333333
+
+// The default horizontal offset. Positive is to the right.
+$defaultBoxShadowHOffset ?= 0px
+
+// The default vertical offset. Positive is down.
+$defaultBoxShadowVOffset ?= 0px
+
+// The default blur length.
+$defaultBoxShadowBlur ?= 5px
+
+// The default spread length.
+$defaultBoxShadowSpread ?= false
+
+// The default shadow inset: inset or false (for standard shadow).
+$defaultBoxShadowInset ?= false
+
+
+getDefaultShadow()
+  join(" ", compact($defaultBoxShadowInset ? 'inset' : false, $defaultBoxShadowHOffset, $defaultBoxShadowVOffset, $defaultBoxShadowBlur, $defaultBoxShadowSpread, $defaultBoxShadowColor))
+
+// Provides cross-browser for Webkit, Gecko, and CSS3 box shadows when one or more box
+// shadows are needed.
+// Each shadow argument should adhere to the standard css3 syntax for the
+// box-shadow property.
+box-shadow()
+  shadows=()
+
+  if arguments
+    for shadow in arguments
+      if shadow == 'default'
+        shadow = getDefaultShadow()
+      push(shadows, shadow)
+  else
+    push(shadows, getDefaultShadow())
+  
+  $shadow = join(", ", shadows)
+  experimental(box-shadow, $shadow, 'moz', 'webkit', not 'o', not 'ms', not 'khtml', 'official')
+
+
+// Provides a single cross-browser CSS box shadow for Webkit, Gecko, and CSS3.
+// Includes default arguments for color, horizontal offset, vertical offset, blur length, spread length, and inset.
+//@mixin single-box-shadow(
+//  $color  : $defaultBoxShadow-color,
+//  $hoff   : $defaultBoxShadow-h-offset,
+//  $voff   : $defaultBoxShadow-v-offset,
+//  $blur   : $defaultBoxShadow-blur,
+//  $spread : $defaultBoxShadow-spread,
+//  $inset  : $defaultBoxShadow-inset
+//) {
+//  @if not ($inset == true or $inset == false or $inset == inset) {
+//    @warn "$inset expected to be true or the inset keyword. Got #{$inset} instead. Using: inset";
+//  }
+//
+//  @if $color == none {
+//    @include box-shadow(none);
+//  } @else {
+//    $full   : $hoff $voff;
+//    @if $blur   { $full: $full $blur;   }
+//    @if $spread { $full: $full $spread; }
+//    @if $color  { $full: $full $color;  }
+//    @if $inset  { $full: inset $full;   }
+//    @include box-shadow($full);
+//  }
+//}

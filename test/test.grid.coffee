@@ -14,7 +14,6 @@ describe "grid", ->
            """)
       .set("paths", [ "#{path.dirname __dirname}/foundation" ])
       .render (err, css) ->
-        # console.log err
         (err?).should.be.false
         # console.log css
         # css = helper.normalizeCss css

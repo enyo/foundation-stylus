@@ -1,4 +1,5 @@
 @import "../support"
+@import "../core"
 
 
 // This mixin provides basic support for CSS3 properties and
@@ -13,6 +14,7 @@ experimental( $property, $value,
               $khtml    = true,
               $official = true)
 
+  $value = unquote($value)
   -moz-{$property} $value    if $moz     and $experimentalSupportForMozilla
   -webkit-{$property} $value if $webkit  and $experimentalSupportForWebkit
   -o-{$property} $value      if $o       and $experimentalSupportForOpera

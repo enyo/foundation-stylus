@@ -9,26 +9,26 @@ html
   font-size 62.5%
 
 body
-  background whiteColor
+  background $white
   defaultFontFamily()
   fontSize(14)
   line-height 1
-  color txtColor
+  color $txtColor
   position relative
   -webkit-font-smoothing antialiased
 
 
 // Links
 a
-  color mainColor
+  color $mainColor
   text-decoration none
   line-height inherit
 
 a:hover
-  color darken(mainColor, 5%)
+  color darken($mainColor, 5%)
 
 a:focus
-  color mainColor
+  color $mainColor
   outline none
 
 p a
@@ -51,7 +51,7 @@ p a:visited
 .hide 
   display none 
 .highlight 
-  background highlightColor 
+  background $highlightColor 
 
 #googlemap img
 object

@@ -2,7 +2,8 @@
 
 
 // Mixin for Semantic Grid reponsiveness
-// respondTo(media) {
+// Not yet supported by stylus yet.
+// respondTo(media)
 //   if media == smallScreen
 //     @media only screen and (max-width: screenSmall - 1) { @content; }
 //   else if media == mediumScreen {
@@ -33,9 +34,9 @@ clearfix()
 
 // Outer row mixin for container rows
 outerRow()
-  width rowWidth
+  width $rowWidth
   max-width 100%
-  min-width screenSmall
+  min-width $screenSmall
   margin 0 auto
   clearfix()
 
@@ -52,7 +53,7 @@ innerRow(behavior = false)
     width auto
     max-width none
     min-width 0
-    margin 0 (-(columnGutter/2))
+    margin 0 -($columnGutter/2)
     clearfix()
 
 
@@ -65,33 +66,33 @@ column(columns=columns, behavior=false)
     margin 0 auto
     position relative
     min-height 1px
-    padding 0 (columnGutter/2)
-    width gridCalc(columns, totalColumns)
+    padding 0 ($columnGutter/2)
+    width gridCalc(columns, $totalColumns)
   else if behavior == collapse
     float left
     position relative
     min-height 1px
     padding 0
-    width gridCalc(columns, totalColumns)
+    width gridCalc(columns, $totalColumns)
   else
     float left
     position relative
     min-height 1px
-    padding 0 (columnGutter/2)
-    width gridCalc(columns, totalColumns)
+    padding 0 ($columnGutter/2)
+    width gridCalc(columns, $totalColumns)
 
 
 // Offset Mixin, include after a column mixin to manipulate its grid offset.
 offsetBy(offset = 1)
   font-size 10px
-  margin-left gridCalc(offset, totalColumns)
+  margin-left gridCalc(offset, $totalColumns)
 
 
 // Push/Pull Mixins, include after a column mixin to manipulate stack ordering.
 push(push = 1)
-  left gridCalc(push, totalColumns)
+  left gridCalc(push, $totalColumns)
 pull(push = 1)
-  right gridCalc(push, totalColumns)
+  right gridCalc(push, $totalColumns)
 
 // Mobile Row, synctax is @include mobile-row();
 
