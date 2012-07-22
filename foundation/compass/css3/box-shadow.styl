@@ -26,7 +26,7 @@ $defaultBoxShadowInset ?= false
 
 
 getDefaultShadow()
-  join(" ", compact($defaultBoxShadowInset ? 'inset' : false, $defaultBoxShadowHOffset, $defaultBoxShadowVOffset, $defaultBoxShadowBlur, $defaultBoxShadowSpread, $defaultBoxShadowColor))
+  join(" ", withoutFalse($defaultBoxShadowInset ? 'inset' : false, $defaultBoxShadowHOffset, $defaultBoxShadowVOffset, $defaultBoxShadowBlur, $defaultBoxShadowSpread, $defaultBoxShadowColor))
 
 // Provides cross-browser for Webkit, Gecko, and CSS3 box shadows when one or more box
 // shadows are needed.
